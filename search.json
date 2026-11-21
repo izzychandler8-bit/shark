@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Shark and Red Tide relationship",
+    "section": "",
+    "text": "Welcome! This website explores the relationship between coastal shark communities in South Florida and Karenia brevis harmful algal blooms (red tide), combining three public datasets:"
+  },
+  {
+    "objectID": "index.html#coastal-shark-migration-map",
+    "href": "index.html#coastal-shark-migration-map",
+    "title": "Shark and Red Tide relationship",
+    "section": "Coastal Shark Migration Map",
+    "text": "Coastal Shark Migration Map\n\n\n\n\n\n\n\n\n\nVisit the Exploration tab to compare shark captures and red tide blooms, or the Data tab to see how all three datasets are loaded into R."
+  },
+  {
+    "objectID": "analysis.html",
+    "href": "analysis.html",
+    "title": "South Florida Sharks and Red Tide Data",
+    "section": "",
+    "text": "library(tidyverse)"
+  },
+  {
+    "objectID": "analysis.html#university-of-miami-shark-survey-data",
+    "href": "analysis.html#university-of-miami-shark-survey-data",
+    "title": "South Florida Sharks and Red Tide Data",
+    "section": "1. University of Miami Shark Survey Data",
+    "text": "1. University of Miami Shark Survey Data\n\nsharks_by_set &lt;- read_csv(\"data/miami_sharks/SharksBySet.csv\")\nshark_lengths &lt;- read_csv(\"data/miami_sharks/TotalLengthAndSex.csv\")\nshark_recaps  &lt;- read_csv(\"data/miami_sharks/OriginalAndRecaptureLocations.csv\")\n\nglimpse(sharks_by_set)\n\nRows: 4,351\nColumns: 27\n$ Observation         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,…\n$ Season              &lt;chr&gt; \"Dry\", \"Dry\", \"Dry\", \"Dry\", \"Dry\", \"Dry\", \"Dry\", \"…\n$ Region              &lt;chr&gt; \"Keys\", \"Keys\", \"Keys\", \"Keys\", \"Keys\", \"Keys\", \"K…\n$ Habitat             &lt;chr&gt; \"Bay\", \"Bay\", \"Bay\", \"Bay\", \"Bay\", \"Bay\", \"Bay\", \"…\n$ ManagementZone      &lt;chr&gt; \"ENP\", \"ENP\", \"ENP\", \"ENP\", \"ENP\", \"ENP\", \"ENP\", \"…\n$ Sample              &lt;chr&gt; \"2009-1-30-1-25.01109\", \"2009-1-30-2-25.01109\", \"2…\n$ Latitude            &lt;dbl&gt; 25.01109, 25.01109, 25.01109, 25.01109, 25.01109, …\n$ Longitude           &lt;dbl&gt; -80.99305, -80.99305, -80.99305, -80.99305, -80.99…\n$ Temperature         &lt;dbl&gt; 21, 21, 21, 21, 21, 26, 25, 26, 25, 25, 25, 26, 26…\n$ DissolvedOxygen     &lt;dbl&gt; 7.76, 7.76, 7.76, 7.76, 7.76, 7.58, 5.11, 4.95, 5.…\n$ Salinity            &lt;dbl&gt; 32.51, 32.51, 32.51, 32.51, 32.51, 36.24, 38.26, 3…\n$ MaximumDepth        &lt;dbl&gt; 11.0, 11.0, 11.0, 11.0, 11.0, 14.0, 14.0, 14.0, 14…\n$ Nurse               &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0,…\n$ Blacknose           &lt;dbl&gt; 0, 0, 0, 2, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…\n$ AtlanticSharpnose   &lt;dbl&gt; 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…\n$ Blacktip            &lt;dbl&gt; 0, 1, 0, 0, 1, 0, 1, 2, 1, 0, 2, 0, 0, 0, 2, 3, 1,…\n$ Bull                &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1,…\n$ GreatHammerhead     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…\n$ Lemon               &lt;dbl&gt; 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 1,…\n$ Sandbar             &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…\n$ Tiger               &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…\n$ GreatWhite          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…\n$ Bonnethead          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…\n$ CaribbeanReef       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…\n$ Dusky               &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…\n$ ScallopedHammerhead &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…\n$ Spinner             &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…"
+  },
+  {
+    "objectID": "analysis.html#florida-fwc-red-tide-monitoring-data-2007present",
+    "href": "analysis.html#florida-fwc-red-tide-monitoring-data-2007present",
+    "title": "South Florida Sharks and Red Tide Data",
+    "section": "2. Florida FWC Red Tide Monitoring Data (2007–Present)",
+    "text": "2. Florida FWC Red Tide Monitoring Data (2007–Present)\n\n# List all FWC CSV files and read them into one combined tibble\nfwc_files &lt;- list.files(\"data/fwc_redtide\", pattern = \"\\\\.csv$\", full.names = TRUE)\nfwc_redtide &lt;- read_csv(fwc_files, col_types = cols(TIME = col_character()))\n\nglimpse(fwc_redtide)\n\nRows: 168,057\nColumns: 13\n$ X           &lt;dbl&gt; 553210.4, 529563.5, 524174.8, 532850.2, 532904.9, 719809.1…\n$ Y           &lt;dbl&gt; 341739.24, 385161.66, 393178.94, 388584.21, 400711.93, 526…\n$ OBJECTID    &lt;dbl&gt; 74578, 74579, 74580, 74581, 74582, 74583, 74584, 74585, 74…\n$ SAMPLE_DATE &lt;chr&gt; \"2007/01/02 00:00:00+00\", \"2007/01/02 00:00:00+00\", \"2007/…\n$ TIME        &lt;chr&gt; \"15:29\", \"17:30\", \"17:58\", \"18:30\", \"19:13\", NA, \"15:00\", …\n$ TIMEZONE    &lt;chr&gt; \"GMT\", \"GMT\", \"GMT\", \"GMT\", \"GMT\", NA, \"GMT\", \"GMT\", NA, N…\n$ DEPTH       &lt;dbl&gt; 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5…\n$ LOCATION    &lt;chr&gt; \"Venice Fishing Pier\", \"Cortez; dock at Bells Fish Co.\", \"…\n$ LATITUDE    &lt;dbl&gt; 27.07230, 27.46580, 27.53850, 27.49630, 27.60550, 28.70590…\n$ LONGITUDE   &lt;dbl&gt; -82.45220, -82.68640, -82.74020, -82.65270, -82.65080, -80…\n$ NAME        &lt;chr&gt; \"Karenia brevis\", \"Karenia brevis\", \"Karenia brevis\", \"Kar…\n$ COUNT_      &lt;dbl&gt; 667, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13000…\n$ HAB_ID      &lt;chr&gt; \"HABW070102-001\", \"HABW070102-002\", \"HABW070102-003\", \"HAB…"
+  },
+  {
+    "objectID": "analysis.html#noaa-habsos-harmful-algal-bloom-data",
+    "href": "analysis.html#noaa-habsos-harmful-algal-bloom-data",
+    "title": "South Florida Sharks and Red Tide Data",
+    "section": "3. NOAA HABSOS Harmful Algal Bloom Data",
+    "text": "3. NOAA HABSOS Harmful Algal Bloom Data\n\nnoaa_habsos &lt;- read_csv(\"data/noaa_habsos/noaa_habsos_cell_counts.csv\")\n\nglimpse(noaa_habsos)\n\nRows: 181,905\nColumns: 26\n$ OBJECTID        &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,…\n$ LONGITUDE       &lt;dbl&gt; -81.9083, -82.3535, -81.8069, -81.9796, -82.6937, -82.…\n$ LATITUDE        &lt;dbl&gt; 26.0867, 26.9345, 26.1324, 26.5334, 27.4684, 27.3859, …\n$ DESCRIPTION     &lt;chr&gt; \"Station C 8, USFWS 1954-57\", \"Lemon Bay, Tom Adams Br…\n$ STATE_ID        &lt;chr&gt; \"FL\", \"FL\", \"FL\", \"FL\", \"FL\", \"FL\", \"FL\", \"FL\", \"FL\", …\n$ SAMPLE_DATE     &lt;chr&gt; \"153-06-29 11:46:38\", \"1953-08-19 04:00:00\", \"1953-08-…\n$ SAMPLE_DEPTH    &lt;dbl&gt; 9.4, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5,…\n$ GENUS           &lt;chr&gt; \"Karenia\", \"Karenia\", \"Karenia\", \"Karenia\", \"Karenia\",…\n$ SPECIES         &lt;chr&gt; \"brevis\", \"brevis\", \"brevis\", \"brevis\", \"brevis\", \"bre…\n$ CATEGORY        &lt;chr&gt; \"not observed\", \"medium\", \"not observed\", \"not observe…\n$ CELLCOUNT       &lt;dbl&gt; 0, 116000, 0, 0, 178000, 600000, 780000, 1732000, 0, 0…\n$ CELLCOUNT_UNIT  &lt;chr&gt; \"cells/L\", \"cells/L\", \"cells/L\", \"cells/L\", \"cells/L\",…\n$ CELLCOUNT_QA    &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …\n$ SALINITY        &lt;dbl&gt; 35.6, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ SALINITY_UNIT   &lt;chr&gt; \"ppt\", NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…\n$ SALINITY_QA     &lt;dbl&gt; 1, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, …\n$ WATER_TEMP      &lt;dbl&gt; 29.8, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ WATER_TEMP_UNIT &lt;chr&gt; \"deg. C\", NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ WATER_TEMP_QA   &lt;dbl&gt; 1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …\n$ WIND_DIR        &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ WIND_DIR_UNIT   &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ WIND_DIR_QA     &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …\n$ WIND_SPEED      &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ WIND_SPEED_UNIT &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ WIND_SPEED_QA   &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …\n$ QA_COMMENT      &lt;chr&gt; \"WSPD unexpected data in input\", \"WTEMP unexpected dat…"
+  },
+  {
+    "objectID": "story.html",
+    "href": "story.html",
+    "title": "Story: When Red Tide Crossed Into Miami’s Shark Refuge",
+    "section": "",
+    "text": "For most of the decade between 2009 and 2021, coastal sharks off Miami and Biscayne Bay lived in a natural geographic refuge from Florida’s red tide blooms. Combining standardized drumline surveys from the University of Miami (4,351 sets and 3,398 individual shark records) with Florida Fish and Wildlife Conservation Commission (FWC) water monitoring reveals a stark divide across the peninsula: while Karenia brevis blooms (&gt;= 10,000 cells/L) erupt almost annually along Southwest Florida’s Gulf coast, South Florida’s Atlantic coast (Longitude &gt; -80.5°) recorded zero bloom samples in 11 out of 13 study years. Even so, mark-recapture tracks show that this boundary is permeable for large coastal predators—Tiger and Lemon sharks tagged off Miami (-80.1°) swam hundreds of kilometers around the Florida Keys directly into Gulf waters where blooms are frequent.\n\n\n\n\n\n\n\n\n\nThat geographic shelter broke down dramatically in 2018 (Panel A, dark red points). During the severe 2017–2018 Southwest Florida red tide crisis, Loop Current and Florida Current eddies carried Karenia brevis cells around the Florida Keys and up the Atlantic coast into Miami-Dade, Broward, and Palm Beach waters. Out of all 95 Atlantic-coast bloom samples recorded in South Florida across the entire 13-year FWC archive, 90 occurred in the autumn of 2018 alone, pushing overall South Florida bloom prevalence to a study-wide peak of 27.1% of all water samples (with concentrations exceeding 50 million cells/L).\nAt the same time, the University of Miami drumline survey recorded a clear dip in coastal shark catch rates, falling from 0.73–0.88 sharks per set during the low-bloom years of 2014–2017 down to 0.61 sharks per set in 2018 (Panel B). Because Karenia brevis neurotoxins (brevetoxins) cause massive fish kills and depleted dissolved oxygen in nearshore waters, mobile coastal sharks frequently move offshore or along the coast to avoid toxic blooms, while slower-moving benthic residents face higher exposure. Together, the spatial map, migration tracks, and annual catch record show why South Florida’s shark community cannot be treated as isolated from Gulf of Mexico harmful algal blooms: sharks cross between both coasts on their own, and in extreme bloom years, red tide crosses right over to them."
+  },
+  {
+    "objectID": "exploration.html",
+    "href": "exploration.html",
+    "title": "Exploration",
+    "section": "",
+    "text": "Use the pull-down menu below to select a coastal shark species and explore where it was captured relative to South Florida Karenia brevis red tide blooms, along with its body length across water temperatures."
+  },
+  {
+    "objectID": "exploration.html#focus-on-a-shark-species",
+    "href": "exploration.html#focus-on-a-shark-species",
+    "title": "Exploration",
+    "section": "Focus on a Shark Species",
+    "text": "Focus on a Shark Species\n\n  \n    Select a Shark Species:\n  \n  \n    All Surveyed Shark Species (3,398 captures)\n    Nurse Shark (1,335 captures)\n    Blacktip Shark (650 captures)\n    Lemon Shark (314 captures)\n    Bull Shark (253 captures)\n    Great Hammerhead Shark (238 captures)\n    Sandbar Shark (210 captures)\n    Blacknose Shark (178 captures)\n    Tiger Shark (100 captures)\n    Atlantic Sharpnose Shark (67 captures)"
+  },
+  {
+    "objectID": "exploration.html#annual-trends-shark-catch-rate-vs.-red-tide-blooms",
+    "href": "exploration.html#annual-trends-shark-catch-rate-vs.-red-tide-blooms",
+    "title": "Exploration",
+    "section": "Annual Trends: Shark Catch Rate vs. Red Tide Blooms",
+    "text": "Annual Trends: Shark Catch Rate vs. Red Tide Blooms"
+  }
+]
