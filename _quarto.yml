@@ -7,6 +7,8 @@ website:
     left:
       - href: index.qmd
         text: Home
+      - href: exploration.qmd
+        text: Exploration
       - href: analysis.qmd
         text: Data
 

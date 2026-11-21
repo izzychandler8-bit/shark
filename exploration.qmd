@@ -1,0 +1,186 @@
+---
+title: "Exploration"
+author: "Isabella Chandler"
+execute:
+  echo: false
+  message: false
+  warning: false
+---
+
+```{r}
+#| label: setup
+library(tidyverse)
+library(leaflet)
+library(plotly)
+library(crosstalk)
+```
+
+Use the pull-down menus, map controls, and interactive chart below to explore South Florida shark captures alongside *Karenia brevis* red tide blooms from 2009 to 2021.
+
+- **Filter with dropdowns:** Choose one or more shark species, survey years, or regions—both the map and scatterplot update automatically.
+- **Zoom & click on the map:** Toggle between **Shark Captures** and **Red Tide Blooms** in the top-right layer box, zoom into any bay or reef, and click any point for full sample details.
+
+```{r}
+#| label: prep-data
+set.seed(42)
+
+# Read set-level water quality measurements so we can attach them to each shark
+sets_env <- read_csv("data/miami_sharks/SharksBySet.csv") |>
+  select(Sample, Temperature, Salinity, DissolvedOxygen, MaximumDepth)
+
+# Clean individual shark records and add slight jitter so sharks from the same set don't overlap
+sharks_clean <- read_csv("data/miami_sharks/TotalLengthAndSex.csv") |>
+  left_join(sets_env, by = "Sample") |>
+  mutate(
+    Species = str_to_title(Species),
+    Date = ymd(str_extract(Sample, "^\\d{4}-\\d{1,2}-\\d{1,2}")),
+    Year = as.character(year(Date)),
+    Sex_label = coalesce(Sex, "Unknown"),
+    Length_cm = `TotalLength(cm)`,
+    lat_jit = Latitude + runif(n(), -0.003, 0.003),
+    lon_jit = Longitude + runif(n(), -0.003, 0.003),
+    popup_html = paste0(
+      "<strong>", Species, " Shark</strong><br>",
+      "Date: ", Date, "<br>",
+      "Length: ", ifelse(is.na(Length_cm), "Not recorded", paste0(round(Length_cm, 1), " cm")), "<br>",
+      "Sex: ", Sex_label, "<br>",
+      "Region / Habitat: ", Region, " (", Habitat, ")<br>",
+      "Water Temp: ", ifelse(is.na(Temperature), "NA", paste0(Temperature, " °C")), "<br>",
+      "Salinity: ", ifelse(is.na(Salinity), "NA", paste0(Salinity, " ppt"))
+    ),
+    hover_text = paste0(
+      "Species: ", Species,
+      "<br>Date: ", Date,
+      "<br>Length: ", round(Length_cm, 1), " cm",
+      "<br>Sex: ", Sex_label,
+      "<br>Water Temp: ", Temperature, " °C",
+      "<br>Salinity: ", Salinity, " ppt",
+      "<br>Region: ", Region
+    )
+  ) |>
+  filter(!is.na(Latitude), !is.na(Longitude))
+
+# Load FWC red tide bloom samples (>= 10,000 cells/L) in South & Southwest Florida (2009-2021)
+fwc_files <- list.files("data/fwc_redtide", pattern = "\\.csv$", full.names = TRUE)
+redtide_blooms <- read_csv(fwc_files, col_types = cols(TIME = col_character())) |>
+  mutate(
+    SampleDate = as_date(ymd_hms(SAMPLE_DATE, quiet = TRUE)),
+    Year = year(SampleDate)
+  ) |>
+  filter(
+    Year >= 2009, Year <= 2021,
+    LATITUDE >= 24.4, LATITUDE <= 27.0,
+    LONGITUDE >= -82.6, LONGITUDE <= -79.8,
+    COUNT_ >= 10000
+  ) |>
+  mutate(
+    Severity = case_when(
+      COUNT_ >= 1000000 ~ "High (>= 1M cells/L)",
+      COUNT_ >= 100000  ~ "Medium (100k - 1M cells/L)",
+      TRUE              ~ "Low (10k - 100k cells/L)"
+    ),
+    Severity = factor(
+      Severity,
+      levels = c(
+        "Low (10k - 100k cells/L)",
+        "Medium (100k - 1M cells/L)",
+        "High (>= 1M cells/L)"
+      )
+    ),
+    bloom_popup = paste0(
+      "<strong>Red Tide Sample (FWC)</strong><br>",
+      "Date: ", SampleDate, "<br>",
+      "Location: ", LOCATION, "<br>",
+      "Severity: ", Severity, "<br>",
+      "Cell Count: ", format(COUNT_, big.mark = ",", scientific = FALSE), " cells/L"
+    )
+  )
+
+# SharedData links the dropdown filters to both the Leaflet map and the Plotly chart
+shared_sharks <- SharedData$new(sharks_clean, group = "shark_explorer")
+```
+
+## Filter Shark Captures
+
+```{r}
+#| label: filter-controls
+bscols(
+  widths = c(4, 4, 4),
+  filter_select("species_filter", "Shark Species", shared_sharks, ~Species),
+  filter_select("year_filter", "Survey Year", shared_sharks, ~Year),
+  filter_select("region_filter", "Region", shared_sharks, ~Region)
+)
+```
+
+## Interactive Map: Shark Captures & Red Tide Blooms
+
+```{r}
+#| label: interactive-map
+bloom_pal <- colorFactor(
+  palette = c("#fdae61", "#f46d43", "#a50026"),
+  domain = redtide_blooms$Severity
+)
+
+leaflet(height = 520) |>
+  addProviderTiles(providers$CartoDB.Positron) |>
+  setView(lng = -80.9, lat = 25.4, zoom = 8) |>
+  addCircleMarkers(
+    data = redtide_blooms,
+    lng = ~LONGITUDE,
+    lat = ~LATITUDE,
+    radius = 5,
+    stroke = FALSE,
+    fillColor = ~bloom_pal(Severity),
+    fillOpacity = 0.65,
+    popup = ~bloom_popup,
+    group = "Red Tide Blooms (FWC)"
+  ) |>
+  addCircleMarkers(
+    data = shared_sharks,
+    lng = ~lon_jit,
+    lat = ~lat_jit,
+    radius = 5,
+    color = "#08519c",
+    weight = 1,
+    fillColor = "#2b8cbe",
+    fillOpacity = 0.8,
+    popup = ~popup_html,
+    group = "Shark Captures (UM)"
+  ) |>
+  addLayersControl(
+    overlayGroups = c("Shark Captures (UM)", "Red Tide Blooms (FWC)"),
+    options = layersControlOptions(collapsed = FALSE)
+  ) |>
+  addLegend(
+    position = "bottomright",
+    pal = bloom_pal,
+    values = redtide_blooms$Severity,
+    title = "Red Tide Severity",
+    opacity = 0.8
+  )
+```
+
+## Shark Size vs. Water Conditions
+
+This chart is linked to the same dropdown menus above—select a species, year, or region to focus on how shark body length varies across water temperatures.
+
+```{r}
+#| label: linked-plotly
+plot_ly(
+  data = shared_sharks,
+  x = ~Temperature,
+  y = ~Length_cm,
+  color = ~Species,
+  text = ~hover_text,
+  hoverinfo = "text",
+  type = "scatter",
+  mode = "markers",
+  marker = list(size = 7, opacity = 0.8)
+) |>
+  layout(
+    title = "Shark Total Length vs. Water Temperature (2009–2021)",
+    xaxis = list(title = "Water Temperature (°C)"),
+    yaxis = list(title = "Total Length (cm)"),
+    legend = list(title = list(text = "Species"))
+  )
+```

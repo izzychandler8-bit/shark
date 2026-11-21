@@ -7,6 +7,13 @@
     "text": "Welcome! This website explores the relationship between coastal shark communities in South Florida and Karenia brevis harmful algal blooms (red tide), combining three public datasets:"
   },
   {
+    "objectID": "index.html#interactive-shark-migration-map",
+    "href": "index.html#interactive-shark-migration-map",
+    "title": "Shark and Red Tide relationship",
+    "section": "Interactive Shark Migration Map",
+    "text": "Interactive Shark Migration Map\nHover over any capture or recapture point to inspect the individual shark’s tag, date, days at liberty, and ocean distance traveled, or click a species in the legend to highlight its tracks.\n\n\n\n\n\n\nVisit the Data page to see how all three datasets are loaded into R."
+  },
+  {
     "objectID": "analysis.html",
     "href": "analysis.html",
     "title": "South Florida Sharks and Red Tide Data",
@@ -35,10 +42,31 @@
     "text": "3. NOAA HABSOS Harmful Algal Bloom Data\n\nnoaa_habsos &lt;- read_csv(\"data/noaa_habsos/noaa_habsos_cell_counts.csv\")\n\nglimpse(noaa_habsos)\n\nRows: 181,905\nColumns: 26\n$ OBJECTID        &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,…\n$ LONGITUDE       &lt;dbl&gt; -81.9083, -82.3535, -81.8069, -81.9796, -82.6937, -82.…\n$ LATITUDE        &lt;dbl&gt; 26.0867, 26.9345, 26.1324, 26.5334, 27.4684, 27.3859, …\n$ DESCRIPTION     &lt;chr&gt; \"Station C 8, USFWS 1954-57\", \"Lemon Bay, Tom Adams Br…\n$ STATE_ID        &lt;chr&gt; \"FL\", \"FL\", \"FL\", \"FL\", \"FL\", \"FL\", \"FL\", \"FL\", \"FL\", …\n$ SAMPLE_DATE     &lt;chr&gt; \"153-06-29 11:46:38\", \"1953-08-19 04:00:00\", \"1953-08-…\n$ SAMPLE_DEPTH    &lt;dbl&gt; 9.4, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5,…\n$ GENUS           &lt;chr&gt; \"Karenia\", \"Karenia\", \"Karenia\", \"Karenia\", \"Karenia\",…\n$ SPECIES         &lt;chr&gt; \"brevis\", \"brevis\", \"brevis\", \"brevis\", \"brevis\", \"bre…\n$ CATEGORY        &lt;chr&gt; \"not observed\", \"medium\", \"not observed\", \"not observe…\n$ CELLCOUNT       &lt;dbl&gt; 0, 116000, 0, 0, 178000, 600000, 780000, 1732000, 0, 0…\n$ CELLCOUNT_UNIT  &lt;chr&gt; \"cells/L\", \"cells/L\", \"cells/L\", \"cells/L\", \"cells/L\",…\n$ CELLCOUNT_QA    &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …\n$ SALINITY        &lt;dbl&gt; 35.6, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ SALINITY_UNIT   &lt;chr&gt; \"ppt\", NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…\n$ SALINITY_QA     &lt;dbl&gt; 1, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, …\n$ WATER_TEMP      &lt;dbl&gt; 29.8, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ WATER_TEMP_UNIT &lt;chr&gt; \"deg. C\", NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ WATER_TEMP_QA   &lt;dbl&gt; 1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …\n$ WIND_DIR        &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ WIND_DIR_UNIT   &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ WIND_DIR_QA     &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …\n$ WIND_SPEED      &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ WIND_SPEED_UNIT &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ WIND_SPEED_QA   &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …\n$ QA_COMMENT      &lt;chr&gt; \"WSPD unexpected data in input\", \"WTEMP unexpected dat…"
   },
   {
-    "objectID": "index.html#interactive-shark-migration-map",
-    "href": "index.html#interactive-shark-migration-map",
-    "title": "Shark and Red Tide relationship",
-    "section": "Interactive Shark Migration Map",
-    "text": "Interactive Shark Migration Map\nHover over any capture or recapture point to inspect the individual shark’s tag, date, days at liberty, and ocean distance traveled, or click a species in the legend to highlight its tracks.\n\n\n\n\n\n\nVisit the Data page to see how all three datasets are loaded into R."
+    "objectID": "exploration.html",
+    "href": "exploration.html",
+    "title": "Exploration",
+    "section": "",
+    "text": "Use the pull-down menus, map controls, and interactive chart below to explore South Florida shark captures alongside Karenia brevis red tide blooms from 2009 to 2021."
+  },
+  {
+    "objectID": "exploration.html#filter-shark-captures",
+    "href": "exploration.html#filter-shark-captures",
+    "title": "Exploration",
+    "section": "Filter Shark Captures",
+    "text": "Filter Shark Captures\n\n\n\n\n\n\nShark Species\n\n\n\n\n\n\n\n\nSurvey Year\n\n\n\n\n\n\n\n\nRegion"
+  },
+  {
+    "objectID": "exploration.html#interactive-map-shark-captures-red-tide-blooms",
+    "href": "exploration.html#interactive-map-shark-captures-red-tide-blooms",
+    "title": "Exploration",
+    "section": "Interactive Map: Shark Captures & Red Tide Blooms",
+    "text": "Interactive Map: Shark Captures & Red Tide Blooms"
+  },
+  {
+    "objectID": "exploration.html#shark-size-vs.-water-conditions",
+    "href": "exploration.html#shark-size-vs.-water-conditions",
+    "title": "Exploration",
+    "section": "Shark Size vs. Water Conditions",
+    "text": "Shark Size vs. Water Conditions\nThis chart is linked to the same dropdown menus above—select a species, year, or region to focus on how shark body length varies across water temperatures."
   }
 ]
