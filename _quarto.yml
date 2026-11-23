@@ -1,5 +1,8 @@
 project:
   type: website
+  render:
+    - "*.qmd"
+    - "!analysis.qmd"
 
 website:
   title: "Shark and Red Tide relationship"
@@ -7,10 +10,16 @@ website:
     left:
       - href: index.qmd
         text: Home
+      - href: guide.qmd
+        text: "Site Guide"
+      - href: story.qmd
+        text: Mission
       - href: exploration.qmd
-        text: Exploration
-      - href: analysis.qmd
-        text: Data
+        text: Graphs
+      - href: correlation.qmd
+        text: Correlation
+      - href: about.qmd
+        text: About
 
 author: "Isabella Chandler"
 

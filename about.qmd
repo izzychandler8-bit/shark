@@ -1,0 +1,28 @@
+---
+title: "About"
+author: "Isabella Chandler"
+---
+
+## About the Author
+
+Hi! I'm **Isabella Chandler**, a student at [New College of Florida](https://www.ncf.edu/). This website was created as a data science project investigating how *Karenia brevis* harmful algal blooms (red tide) interact with coastal shark populations and migration corridors around South Florida.
+
+### Contact & Links
+
+- **Email:** [i.chandler30@ncf.edu](mailto:i.chandler30@ncf.edu)
+- **GitHub Profile:** [github.com/izzychandler8-bit](https://github.com/izzychandler8-bit)
+- **Project Repository:** [github.com/izzychandler8-bit/shark](https://github.com/izzychandler8-bit/shark)
+- **Institution:** [New College of Florida](https://www.ncf.edu/)
+
+## Data Sources
+
+This project combines three publicly available marine and environmental datasets:
+
+1. **University of Miami Coastal Shark Surveys (2009–2021)**  
+   Standardized drumline survey records from Miami through the middle Florida Keys, encompassing 21,755 drumlines (4,351 sets) and 3,398 captured sharks across 15 species. Includes catch-per-set counts, environmental measurements, total length and sex records, and mark-recapture migration tracks. Published by Abigail Tinari and Neil Hammerschlag (2021), *"An ecological assessment of large coastal shark communities in South Florida,"* *Ocean & Coastal Management* ([doi:10.1016/j.ocecoaman.2021.105772](https://doi.org/10.1016/j.ocecoaman.2021.105772)).
+
+2. **Florida FWC Red Tide Monitoring Database (2007–Present)**  
+   Coastal water sample records maintained by the [Florida Fish and Wildlife Conservation Commission (FWC) Fish and Wildlife Research Institute](https://myfwc.com/research/redtide/monitoring/database/), reporting sample dates, geographic coordinates, water depth, and *Karenia brevis* cell concentrations (cells/L) across Florida waters.
+
+3. **NOAA HABSOS (Harmful Algal BloomS Observing System)**  
+   Historical *Karenia brevis* cell count observations and accompanying physical water measurements (temperature, salinity, and dissolved oxygen) across the Gulf of Mexico, archived by the [National Centers for Environmental Information / NOAA HABSOS](https://habsos.noaa.gov/).

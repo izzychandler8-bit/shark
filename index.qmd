@@ -10,7 +10,7 @@ execute:
 ```{r}
 #| label: setup
 library(tidyverse)
-library(plotly)
+dir.create("images", showWarnings = FALSE)
 ```
 
 Welcome! This website explores the relationship between coastal shark communities in South Florida and *Karenia brevis* harmful algal blooms (red tide), combining three public datasets:
@@ -19,28 +19,11 @@ Welcome! This website explores the relationship between coastal shark communitie
 - **Florida FWC Red Tide Monitoring (2007–Present):** Water quality and *Karenia brevis* cell count samples across Florida.
 - **NOAA HABSOS Archive:** Historical harmful algal bloom observations and environmental measurements across the Gulf of Mexico.
 
-## Interactive Shark Migration Map
-
-Hover over any capture or recapture point to inspect the individual shark's tag, date, days at liberty, and ocean distance traveled, or click a species in the legend to highlight its tracks.
+## Coastal Shark Migration Map
 
 ```{r}
 #| label: shark-migration-plot
-shark_tracks <- read_csv("data/miami_sharks/OriginalAndRecaptureLocations.csv") |>
-  group_by(TagNumber) |>
-  # Copy total days at liberty and track length from the Original row to Recapture rows
-  fill(DaysAtLiberty, `TrackLength(m)`, .direction = "down") |>
-  ungroup() |>
-  mutate(
-    distance_km = round(`TrackLength(m)` / 1000, 1),
-    hover_text = paste0(
-      "Species: ", Species,
-      "<br>Tag: ", TagNumber,
-      "<br>Event: ", `Original/Recap`,
-      "<br>Date: ", Date,
-      "<br>Distance: ", distance_km, " km",
-      "<br>Days at liberty: ", DaysAtLiberty
-    )
-  )
+shark_tracks <- read_csv("data/miami_sharks/OriginalAndRecaptureLocations.csv")
 
 # Load Florida and neighboring state outlines for the map background
 fl_coast <- map_data("state", region = c("florida", "georgia", "alabama"))
@@ -57,22 +40,24 @@ migration_plot <- ggplot() +
     aes(x = Longitude, y = Latitude, group = TagNumber, color = Species),
     linewidth = 0.6, alpha = 0.75
   ) +
-  # Hide artificial "E" waypoints from clickable points so only real captures show
+  # Hide artificial "E" waypoints so only real capture/recapture locations appear as points
   geom_point(
     data = filter(shark_tracks, `Original/Recap` != "E"),
-    aes(x = Longitude, y = Latitude, color = Species, text = hover_text),
-    size = 2, alpha = 0.9
+    aes(x = Longitude, y = Latitude, color = Species),
+    size = 1.8, alpha = 0.9
   ) +
   coord_quickmap(xlim = c(-85.5, -78.5), ylim = c(24, 30.5)) +
   labs(
     title = "Tracked Coastal Shark Migrations Around Florida (2009–2021)",
+    subtitle = "Mark-recapture paths from University of Miami coastal drumline surveys",
     x = "Longitude",
     y = "Latitude",
     color = "Shark Species"
   ) +
-  theme_minimal()
+  theme_minimal(base_size = 12)
 
-ggplotly(migration_plot, tooltip = "text")
+ggsave("images/shark_migrations.png", migration_plot, width = 8, height = 6, dpi = 300, bg = "white")
+knitr::include_graphics("images/shark_migrations.png")
 ```
 
-Visit the [Data](analysis.qmd) page to see how all three datasets are loaded into R.
+Visit the [Graphs](exploration.qmd) tab to compare shark captures and red tide blooms, or the [Correlation](correlation.qmd) tab to see the combined annual data and statistical relationship.
