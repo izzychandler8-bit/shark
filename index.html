@@ -100,16 +100,24 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./guide.html"> 
+<span class="menu-text">Site Guide</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./story.html"> 
-<span class="menu-text">Story</span></a>
+<span class="menu-text">Mission</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./exploration.html"> 
-<span class="menu-text">Exploration</span></a>
+<span class="menu-text">Graphs</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./analysis.html"> 
-<span class="menu-text">Data</span></a>
+    <a class="nav-link" href="./correlation.html"> 
+<span class="menu-text">Correlation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -176,7 +184,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>Visit the <a href="./exploration.html">Exploration</a> tab to compare shark captures and red tide blooms, or the <a href="./analysis.html">Data</a> tab to see how all three datasets are loaded into R.</p>
+<p>Visit the <a href="./exploration.html">Graphs</a> tab to compare shark captures and red tide blooms, or the <a href="./correlation.html">Correlation</a> tab to see the combined annual data and statistical relationship.</p>
 
 
 </section>
@@ -255,7 +263,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/izzychandler8-bit\.github\.io\/shark\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

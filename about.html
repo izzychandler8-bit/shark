@@ -8,7 +8,7 @@
 
 <meta name="author" content="Isabella Chandler">
 
-<title>South Florida Sharks and Red Tide Data – Shark and Red Tide relationship</title>
+<title>About – Shark and Red Tide relationship</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,41 +26,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -135,16 +100,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./guide.html"> 
+<span class="menu-text">Site Guide</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./story.html"> 
-<span class="menu-text">Story</span></a>
+<span class="menu-text">Mission</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./exploration.html"> 
-<span class="menu-text">Exploration</span></a>
+<span class="menu-text">Graphs</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./analysis.html" aria-current="page"> 
-<span class="menu-text">Data</span></a>
+    <a class="nav-link" href="./correlation.html"> 
+<span class="menu-text">Correlation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./about.html" aria-current="page"> 
+<span class="menu-text">About</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -162,9 +135,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#university-of-miami-shark-survey-data" id="toc-university-of-miami-shark-survey-data" class="nav-link active" data-scroll-target="#university-of-miami-shark-survey-data">1. University of Miami Shark Survey Data</a></li>
-  <li><a href="#florida-fwc-red-tide-monitoring-data-2007present" id="toc-florida-fwc-red-tide-monitoring-data-2007present" class="nav-link" data-scroll-target="#florida-fwc-red-tide-monitoring-data-2007present">2. Florida FWC Red Tide Monitoring Data (2007–Present)</a></li>
-  <li><a href="#noaa-habsos-harmful-algal-bloom-data" id="toc-noaa-habsos-harmful-algal-bloom-data" class="nav-link" data-scroll-target="#noaa-habsos-harmful-algal-bloom-data">3. NOAA HABSOS Harmful Algal Bloom Data</a></li>
+  <li><a href="#about-the-author" id="toc-about-the-author" class="nav-link active" data-scroll-target="#about-the-author">About the Author</a>
+  <ul class="collapse">
+  <li><a href="#contact-links" id="toc-contact-links" class="nav-link" data-scroll-target="#contact-links">Contact &amp; Links</a></li>
+  </ul></li>
+  <li><a href="#data-sources" id="toc-data-sources" class="nav-link" data-scroll-target="#data-sources">Data Sources</a></li>
   </ul>
 </nav>
     </div>
@@ -173,7 +148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">South Florida Sharks and Red Tide Data</h1>
+<h1 class="title">About</h1>
 </div>
 
 
@@ -196,114 +171,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<section id="university-of-miami-shark-survey-data" class="level2">
-<h2 class="anchored" data-anchor-id="university-of-miami-shark-survey-data">1. University of Miami Shark Survey Data</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sharks_by_set <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/miami_sharks/SharksBySet.csv"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>shark_lengths <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/miami_sharks/TotalLengthAndSex.csv"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>shark_recaps  <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/miami_sharks/OriginalAndRecaptureLocations.csv"</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sharks_by_set)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 4,351
-Columns: 27
-$ Observation         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,…
-$ Season              &lt;chr&gt; "Dry", "Dry", "Dry", "Dry", "Dry", "Dry", "Dry", "…
-$ Region              &lt;chr&gt; "Keys", "Keys", "Keys", "Keys", "Keys", "Keys", "K…
-$ Habitat             &lt;chr&gt; "Bay", "Bay", "Bay", "Bay", "Bay", "Bay", "Bay", "…
-$ ManagementZone      &lt;chr&gt; "ENP", "ENP", "ENP", "ENP", "ENP", "ENP", "ENP", "…
-$ Sample              &lt;chr&gt; "2009-1-30-1-25.01109", "2009-1-30-2-25.01109", "2…
-$ Latitude            &lt;dbl&gt; 25.01109, 25.01109, 25.01109, 25.01109, 25.01109, …
-$ Longitude           &lt;dbl&gt; -80.99305, -80.99305, -80.99305, -80.99305, -80.99…
-$ Temperature         &lt;dbl&gt; 21, 21, 21, 21, 21, 26, 25, 26, 25, 25, 25, 26, 26…
-$ DissolvedOxygen     &lt;dbl&gt; 7.76, 7.76, 7.76, 7.76, 7.76, 7.58, 5.11, 4.95, 5.…
-$ Salinity            &lt;dbl&gt; 32.51, 32.51, 32.51, 32.51, 32.51, 36.24, 38.26, 3…
-$ MaximumDepth        &lt;dbl&gt; 11.0, 11.0, 11.0, 11.0, 11.0, 14.0, 14.0, 14.0, 14…
-$ Nurse               &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0,…
-$ Blacknose           &lt;dbl&gt; 0, 0, 0, 2, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
-$ AtlanticSharpnose   &lt;dbl&gt; 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
-$ Blacktip            &lt;dbl&gt; 0, 1, 0, 0, 1, 0, 1, 2, 1, 0, 2, 0, 0, 0, 2, 3, 1,…
-$ Bull                &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1,…
-$ GreatHammerhead     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
-$ Lemon               &lt;dbl&gt; 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 1,…
-$ Sandbar             &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
-$ Tiger               &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
-$ GreatWhite          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
-$ Bonnethead          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
-$ CaribbeanReef       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
-$ Dusky               &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
-$ ScallopedHammerhead &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
-$ Spinner             &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</code></pre>
-</div>
-</div>
+<section id="about-the-author" class="level2">
+<h2 class="anchored" data-anchor-id="about-the-author">About the Author</h2>
+<p>Hi! I’m <strong>Isabella Chandler</strong>, a student at <a href="https://www.ncf.edu/">New College of Florida</a>. This website was created as a data science project investigating how <em>Karenia brevis</em> harmful algal blooms (red tide) interact with coastal shark populations and migration corridors around South Florida.</p>
+<section id="contact-links" class="level3">
+<h3 class="anchored" data-anchor-id="contact-links">Contact &amp; Links</h3>
+<ul>
+<li><strong>Email:</strong> <a href="mailto:i.chandler30@ncf.edu">i.chandler30@ncf.edu</a></li>
+<li><strong>GitHub Profile:</strong> <a href="https://github.com/izzychandler8-bit">github.com/izzychandler8-bit</a></li>
+<li><strong>Project Repository:</strong> <a href="https://github.com/izzychandler8-bit/shark">github.com/izzychandler8-bit/shark</a></li>
+<li><strong>Institution:</strong> <a href="https://www.ncf.edu/">New College of Florida</a></li>
+</ul>
 </section>
-<section id="florida-fwc-red-tide-monitoring-data-2007present" class="level2">
-<h2 class="anchored" data-anchor-id="florida-fwc-red-tide-monitoring-data-2007present">2. Florida FWC Red Tide Monitoring Data (2007–Present)</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List all FWC CSV files and read them into one combined tibble</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fwc_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">"data/fwc_redtide"</span>, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">.csv$"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>fwc_redtide <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(fwc_files, <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">TIME =</span> <span class="fu">col_character</span>()))</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(fwc_redtide)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 168,057
-Columns: 13
-$ X           &lt;dbl&gt; 553210.4, 529563.5, 524174.8, 532850.2, 532904.9, 719809.1…
-$ Y           &lt;dbl&gt; 341739.24, 385161.66, 393178.94, 388584.21, 400711.93, 526…
-$ OBJECTID    &lt;dbl&gt; 74578, 74579, 74580, 74581, 74582, 74583, 74584, 74585, 74…
-$ SAMPLE_DATE &lt;chr&gt; "2007/01/02 00:00:00+00", "2007/01/02 00:00:00+00", "2007/…
-$ TIME        &lt;chr&gt; "15:29", "17:30", "17:58", "18:30", "19:13", NA, "15:00", …
-$ TIMEZONE    &lt;chr&gt; "GMT", "GMT", "GMT", "GMT", "GMT", NA, "GMT", "GMT", NA, N…
-$ DEPTH       &lt;dbl&gt; 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5…
-$ LOCATION    &lt;chr&gt; "Venice Fishing Pier", "Cortez; dock at Bells Fish Co.", "…
-$ LATITUDE    &lt;dbl&gt; 27.07230, 27.46580, 27.53850, 27.49630, 27.60550, 28.70590…
-$ LONGITUDE   &lt;dbl&gt; -82.45220, -82.68640, -82.74020, -82.65270, -82.65080, -80…
-$ NAME        &lt;chr&gt; "Karenia brevis", "Karenia brevis", "Karenia brevis", "Kar…
-$ COUNT_      &lt;dbl&gt; 667, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13000…
-$ HAB_ID      &lt;chr&gt; "HABW070102-001", "HABW070102-002", "HABW070102-003", "HAB…</code></pre>
-</div>
-</div>
 </section>
-<section id="noaa-habsos-harmful-algal-bloom-data" class="level2">
-<h2 class="anchored" data-anchor-id="noaa-habsos-harmful-algal-bloom-data">3. NOAA HABSOS Harmful Algal Bloom Data</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>noaa_habsos <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/noaa_habsos/noaa_habsos_cell_counts.csv"</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(noaa_habsos)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 181,905
-Columns: 26
-$ OBJECTID        &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,…
-$ LONGITUDE       &lt;dbl&gt; -81.9083, -82.3535, -81.8069, -81.9796, -82.6937, -82.…
-$ LATITUDE        &lt;dbl&gt; 26.0867, 26.9345, 26.1324, 26.5334, 27.4684, 27.3859, …
-$ DESCRIPTION     &lt;chr&gt; "Station C 8, USFWS 1954-57", "Lemon Bay, Tom Adams Br…
-$ STATE_ID        &lt;chr&gt; "FL", "FL", "FL", "FL", "FL", "FL", "FL", "FL", "FL", …
-$ SAMPLE_DATE     &lt;chr&gt; "153-06-29 11:46:38", "1953-08-19 04:00:00", "1953-08-…
-$ SAMPLE_DEPTH    &lt;dbl&gt; 9.4, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5,…
-$ GENUS           &lt;chr&gt; "Karenia", "Karenia", "Karenia", "Karenia", "Karenia",…
-$ SPECIES         &lt;chr&gt; "brevis", "brevis", "brevis", "brevis", "brevis", "bre…
-$ CATEGORY        &lt;chr&gt; "not observed", "medium", "not observed", "not observe…
-$ CELLCOUNT       &lt;dbl&gt; 0, 116000, 0, 0, 178000, 600000, 780000, 1732000, 0, 0…
-$ CELLCOUNT_UNIT  &lt;chr&gt; "cells/L", "cells/L", "cells/L", "cells/L", "cells/L",…
-$ CELLCOUNT_QA    &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
-$ SALINITY        &lt;dbl&gt; 35.6, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
-$ SALINITY_UNIT   &lt;chr&gt; "ppt", NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-$ SALINITY_QA     &lt;dbl&gt; 1, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, …
-$ WATER_TEMP      &lt;dbl&gt; 29.8, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
-$ WATER_TEMP_UNIT &lt;chr&gt; "deg. C", NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
-$ WATER_TEMP_QA   &lt;dbl&gt; 1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …
-$ WIND_DIR        &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
-$ WIND_DIR_UNIT   &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
-$ WIND_DIR_QA     &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …
-$ WIND_SPEED      &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
-$ WIND_SPEED_UNIT &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
-$ WIND_SPEED_QA   &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …
-$ QA_COMMENT      &lt;chr&gt; "WSPD unexpected data in input", "WTEMP unexpected dat…</code></pre>
-</div>
-</div>
+<section id="data-sources" class="level2">
+<h2 class="anchored" data-anchor-id="data-sources">Data Sources</h2>
+<p>This project combines three publicly available marine and environmental datasets:</p>
+<ol type="1">
+<li><p><strong>University of Miami Coastal Shark Surveys (2009–2021)</strong><br>
+Standardized drumline survey records from Miami through the middle Florida Keys, encompassing 21,755 drumlines (4,351 sets) and 3,398 captured sharks across 15 species. Includes catch-per-set counts, environmental measurements, total length and sex records, and mark-recapture migration tracks. Published by Abigail Tinari and Neil Hammerschlag (2021), <em>“An ecological assessment of large coastal shark communities in South Florida,”</em> <em>Ocean &amp; Coastal Management</em> (<a href="https://doi.org/10.1016/j.ocecoaman.2021.105772">doi:10.1016/j.ocecoaman.2021.105772</a>).</p></li>
+<li><p><strong>Florida FWC Red Tide Monitoring Database (2007–Present)</strong><br>
+Coastal water sample records maintained by the <a href="https://myfwc.com/research/redtide/monitoring/database/">Florida Fish and Wildlife Conservation Commission (FWC) Fish and Wildlife Research Institute</a>, reporting sample dates, geographic coordinates, water depth, and <em>Karenia brevis</em> cell concentrations (cells/L) across Florida waters.</p></li>
+<li><p><strong>NOAA HABSOS (Harmful Algal BloomS Observing System)</strong><br>
+Historical <em>Karenia brevis</em> cell count observations and accompanying physical water measurements (temperature, salinity, and dissolved oxygen) across the Gulf of Mexico, archived by the <a href="https://habsos.noaa.gov/">National Centers for Environmental Information / NOAA HABSOS</a>.</p></li>
+</ol>
 
 
 </section>
@@ -382,7 +273,7 @@ $ QA_COMMENT      &lt;chr&gt; "WSPD unexpected data in input", "WTEMP unexpected
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/izzychandler8-bit\.github\.io\/shark\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
